@@ -56,35 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
 
-	<style type="text/css">
-		#text {
+	<link rel="stylesheet" href="mystyle.css">
+	<div class="bg"></div>
 
-			height: 25px;
-			border-radius: 5px;
-			padding: 4px;
-			border: solid thin #aaa;
-			width: 100%;
-		}
-
-		#button {
-
-			padding: 10px;
-			width: 100px;
-			color: white;
-			background-color: lightblue;
-			border: none;
-		}
-
-		#box {
-
-			background-color: grey;
-			margin: auto;
-			width: 300px;
-			padding: 20px;
-		}
-	</style>
-
-	<div id="box">
+	<div id="box" class=center>
 
 		<form method="post">
 			<div style="font-size: 20px;margin: 10px;color: white;">Login</div>
