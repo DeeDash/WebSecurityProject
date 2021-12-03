@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		header("Location: login.php");
 		die;
 	} else {
-		echo "Please enter some valid information!";
+		echo '<script>alert("Please enter some valid information!")</script>';
 	}
 }
 ?>
