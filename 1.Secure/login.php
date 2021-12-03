@@ -7,14 +7,23 @@ include("functions.php");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-	$user_name = $_POST['user_name'];
-	$password = $_POST['password'];
-	$message = $_POST['message'];
+	$user_name = mysqli_real_escape_string($con, $_POST['user_name']);
+	$password = mysqli_real_escape_string($con, $_POST['password']);
+	$message = mysqli_real_escape_string($con, $_POST['message']);
 
 	if (!empty($user_name) && !empty($password) && !is_numeric($user_name) && !empty($message)) {
 
-		$query = "select * from users where user_name = '$user_name' and password = '$password' limit 1";
-		$result = mysqli_query($con, $query);
+		$query = "select * from users where user_name = ? and password = ? limit 1;";
+		$stmt = mysqli_stmt_init($con);
+
+		if (!mysqli_stmt_prepare($stmt, $query)) {
+			echo "SQL statement failed";
+		} else {
+			mysqli_stmt_bind_param($stmt, "ss", $user_name, $password);
+		}
+
+		mysqli_stmt_execute($stmt);
+		$result = mysqli_stmt_get_result($stmt);
 
 		if ($result) {
 			if ($result && mysqli_num_rows($result) > 0) {
